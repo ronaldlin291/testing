@@ -1,0 +1,33 @@
+Option Strict On
+Public Class WeeklyPayCalculator
+
+    Private Sub btnWeeklyPay_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnWeeklyPay.Click
+        Dim intTotalMinutesWorked, intHoursWorked, intLeftoverMinutes As Integer
+        Dim dHourlyPayRate As Decimal
+
+        intTotalMinutesWorked = Convert.ToInt32(txtTotalMinutesWorked.Text)
+        dHourlyPayRate = Convert.ToDecimal(txtHourlyPayRate.Text)
+        intHoursWorked = intTotalMinutesWorked \ 60
+        intLeftoverMinutes = intTotalMinutesWorked Mod 60
+
+        lblHoursWorked.Text = "Hours Worked:    " & intHoursWorked
+        lblLeftoverMinutes.Text = "Leftover Minutes:   " & intLeftoverMinutes
+
+        lblWeeklyPay.Text = "Weekly Pay:    " & (intTotalMinutesWorked * dHourlyPayRate / 60).ToString("C")
+
+    End Sub
+
+    Private Sub btnClear_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnClear.Click
+        txtTotalMinutesWorked.Clear()
+        txtTotalMinutesWorked.Focus()
+        txtHourlyPayRate.Clear()
+        lblHoursWorked.Text = "Hours Worked:"
+        lblLeftoverMinutes.Text = "Leftover Minutes:"
+        lblWeeklyPay.Text = "Weekly Pay:"
+
+    End Sub
+
+    Private Sub btnExit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnExit.Click
+        Close()
+    End Sub
+End Class
